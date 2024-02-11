@@ -84,10 +84,6 @@ const config = {
                 label: "functions",
                 to: "/docs/functions/",
               },
-              {
-                label: "contributing",
-                to: "/docs/contributing",
-              },
             ],
           },
           {
