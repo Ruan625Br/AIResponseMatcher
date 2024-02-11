@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.22"
+    `maven-publish`
 
 }
 group = "com.jn.airesponsematcher"
@@ -10,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.8.10")
 }
 
 tasks.test {
@@ -19,4 +20,15 @@ tasks.test {
 
 kotlin {
     jvmToolchain(8)
+}
+publishing {
+    publications {
+        create<MavenPublication>("maven"){
+            groupId = "com.github.Ruan625Br"
+            artifactId = "AIResponseMatcher"
+            version = "1.0.0-beta"
+
+            from(components["java"])
+        }
+    }
 }

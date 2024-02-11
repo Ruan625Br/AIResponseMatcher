@@ -15,6 +15,19 @@ fun String.replaceOperationWithNewValue(operation: OperationBase, newValue: Stri
 }
 
 /**
+ * Replaces all occurrences of specified operations in the string with a new value.
+ *
+ * @param operations The list of operations to be replaced in the string.
+ * @param newValue The new value that will replace the occurrences of the operations. Default: "".
+ * @return A new string with the operations replaced by the new value.
+ */
+fun String.replaceAllOperationsWithNewValue(operations: List<OperationBase>, newValue: String = ""): String {
+    var result = this
+    operations.forEach { result = result.replace(it.regex, newValue) }
+    return result
+}
+
+/**
  * Extracts the arguments of an operation from the string.
  *
  * @param operation The operation from which to extract the arguments.
