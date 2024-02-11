@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-          cache-dependency-path: docs/package-lock.json
+          cache-dependency-path: docs/yarn.lock
       - name: Install dependencies
         run: |
           cd docs  # Muda para o diretório /docs
