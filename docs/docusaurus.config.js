@@ -12,11 +12,10 @@ const config = {
   tagline:
     "A small library that analyzes the output of an AI and performs corresponding operations based on that analysis.",
   favicon: "img/favicon.ico",
-  url: "https://github.com",
+  url: "https://ruan625Br.github.io",
   baseUrl: "/AIResponseMatcher/",
-  organizationName: "Ruan625Br", // Usually your GitHub org/user name.
+  organizationName: "ruan625Br", // Usually your GitHub org/user name.
   projectName: "AIResponseMatcher", // Usually your repo name.
-  deploymentBranch: "gh-pages",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
@@ -35,7 +34,7 @@ const config = {
       ({
         docs: {
           sidebarPath: "./sidebars.js",
-          editUrl: "https://github.com/Ruan625Br/AIResponseMatcher/tree/master/docs",
+          editUrl: "AIResponseMatcher/tree/master/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
