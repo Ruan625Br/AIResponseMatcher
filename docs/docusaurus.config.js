@@ -11,7 +11,6 @@ const config = {
   title: "AIResponseMatcher",
   tagline:
     "A small library that analyzes the output of an AI and performs corresponding operations based on that analysis.",
-  favicon: "img/favicon.ico",
   url: "https://ruan625Br.github.io",
   baseUrl: "/AIResponseMatcher/",
   organizationName: "ruan625Br", // Usually your GitHub org/user name.
@@ -34,7 +33,7 @@ const config = {
       ({
         docs: {
           sidebarPath: "./sidebars.js",
-          editUrl: "AIResponseMatcher/tree/master/docs",
+          editUrl: "https://ruan625br/AIResponseMatcher/tree/master/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -46,7 +45,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: "img/docusaurus-social-card.jpg",
       hideableSidebar: true,
       colorMode: {
         defaultMode: 'dark',
