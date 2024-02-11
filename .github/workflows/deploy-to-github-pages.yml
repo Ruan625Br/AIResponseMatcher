@@ -37,8 +37,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: yarn
+          cache-dependency-path: docs/yarn.lock
       - name: Install dependencies
         run: |
           cd docs  # Muda para o diretório /docs
