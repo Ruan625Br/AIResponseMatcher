@@ -3,11 +3,9 @@
 This library analyzes the output of AI and calls corresponding operations in a simple and straightforward manner. Designed for ease of use, AIResponseMatcher simplifies the interpretation of AI responses, enabling efficient integration with specific operations.
 
 ---
-
 > [!WARNING]  
 > This project is currently experimental and mostly just a proof-of-concept at this point. There are no tests and some things might be broken or very non-performant.
 > The API may also change between releases without deprecation cycles.
-
 ---
 
 ## Usage
