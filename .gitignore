@@ -45,9 +45,6 @@ bin/
 # Dependencies
 /docs/node_modules
 
-# Production
-/docs/build
-
 # Generated files
 /docs/.docusaurus
 /docs/.cache-loader
