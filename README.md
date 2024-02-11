@@ -1,5 +1,7 @@
 ## AIResponseMatcher
 
+This library analyzes the output of AI and calls corresponding operations in a simple and straightforward manner. Designed for ease of use, AIResponseMatcher simplifies the interpretation of AI responses, enabling efficient integration with specific operations.
+
 ---
 
 > [!WARNING]  
