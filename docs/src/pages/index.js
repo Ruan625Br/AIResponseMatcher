@@ -10,8 +10,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title} | JavaScript Dates Library`}
-      description="Working with dates in JavaScript has never been easier"
+      title={`${siteConfig.title}`}
+      description="Simplify the analysis of AI output and invocation of corresponding operations with AIResponseMatcher."
     >
       <div className={styles.container}>
         <HomepageHero />
