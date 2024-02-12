@@ -8,6 +8,8 @@ This library analyzes the output of AI and calls corresponding operations in a s
 > The API may also change between releases without deprecation cycles.
 ---
 
+## Consult the [documentation](https://ruan625br.github.io/AIResponseMatcher/)
+
 ## Usage
 
 ### Step 1. [Add the JitPack repository to the build file](https://jitpack.io/)
