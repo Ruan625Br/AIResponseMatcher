@@ -18,3 +18,21 @@ fun Output.processLines(): String {
 
     return linesCopy.joinToString("\n")
 }
+
+fun Output.process(): String {
+    val outputMatches = mutableListOf<String>()
+    var currentPosition = 0
+
+    operations.forEach { operation ->
+        val regex = operation.regex
+        val matches = regex.findAll(output)
+        matches.forEach { matchResult ->
+
+            outputMatches.add(output.substring(currentPosition, matchResult.range.first))
+            outputMatches.add(operation.process(matchResult.value))
+            currentPosition = matchResult.range.last + 1
+        }
+    }
+    outputMatches.add(output.substring(currentPosition))
+    return outputMatches.joinToString("\n")
+}

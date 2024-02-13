@@ -1,4 +1,5 @@
 
+import com.jn.airesponsematcher.extensions.process
 import com.jn.airesponsematcher.extensions.processLines
 import com.jn.airesponsematcher.processor.Output
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,7 +10,7 @@ class FileOperationsTest {
 
     private val basePath = "/storage/emulated/0"
     private val textOperationStatus = "Operation status:"
-    private val operations = listOf(FileOperations.RenameFile)
+    private val operations = listOf(FileOperations.RenameFile, FileOperations.Write)
 
     @Test
     fun renameFileTest() {
@@ -41,4 +42,39 @@ class FileOperationsTest {
         assertEquals(expected, result)
     }
 
+    @Test
+    fun writeTextTest(){
+        val filePath = "$basePath/Download/MyFile.txt"
+        val write: (String, String) -> String = { path, content ->
+            "WriteFile: write_START\"path\": \"$path\", \"content\": \"$content\"END"
+        }
+
+        val content1 = "package com.my.package\nfun main(){\n    //code here\n}"
+        val content2 =  "package com.my.package\nfun main(){\n   println(\"Hello world\")\n}"
+        val write1 = write(filePath, content1)
+        val write2 = write(filePath, content2)
+        val outputAI = buildString {
+            appendLine(write1)
+            appendLine(write2)
+            appendLine("Fim do game boi heheheheh\nAinda aqui?")
+
+        }
+        val output = Output(outputAI, operations)
+        val expected = buildString {
+            appendLine("WriteFile: \nPath: $filePath")
+            appendLine("Content: $content1")
+            appendLine()
+            appendLine()
+            appendLine("WriteFile: \nPath: $filePath")
+            appendLine("Content: $content2")
+            appendLine()
+            appendLine()
+            appendLine("Fim do game boi heheheheh\nAinda aqui?")
+        }
+
+        val result = output.process()
+        println(result)
+        assertEquals(expected, result)
+
+    }
 }

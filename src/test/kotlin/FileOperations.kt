@@ -1,12 +1,15 @@
 
 import com.jn.airesponsematcher.extensions.get
+import com.jn.airesponsematcher.extensions.removeQuotes
 import com.jn.airesponsematcher.extensions.replaceOperationWithNewValue
 import com.jn.airesponsematcher.operation.Operation
 import com.jn.airesponsematcher.operation.OperationArg
+import com.jn.airesponsematcher.utils.Patterns
 
 enum class MyArgs(val arg: String) : OperationArg {
     PATH("path"),
-    FILE_NAME("fileName");
+    FILE_NAME("fileName"),
+    CONTENT("content");
     override val value: String
         get() = arg
 
@@ -35,5 +38,27 @@ object FileOperations {
 
         override val name: String
             get() = "createFile"
+    }
+
+    data object Write : Operation {
+
+        private const val myPattern = "_START${Patterns.BASE_ARGUMENT}END"
+        override fun resolve(output: String, args: Map<String, String>?): String {
+            val path = args?.get(MyArgs.PATH)
+            val content = args?.get(MyArgs.CONTENT)
+
+            val newValue = buildString {
+                appendLine("Path: $path")
+                appendLine("Content: ${content?.removeQuotes()}")
+            }
+
+           return output.replaceOperationWithNewValue(this, newValue)
+        }
+
+        override val regex: Regex
+            get() = "$name$myPattern".toRegex(RegexOption.DOT_MATCHES_ALL)
+        override val name: String
+            get() = "write"
+
     }
 }
