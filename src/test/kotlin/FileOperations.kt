@@ -42,7 +42,7 @@ object FileOperations {
 
     data object Write : Operation {
 
-        private const val myPattern = "_START${Patterns.BASE_ARGUMENT}END"
+        private const val mPattern = "\\s*START${Patterns.BASE_ARGUMENT}END"
         override fun resolve(output: String, args: Map<String, String>?): String {
             val path = args?.get(MyArgs.PATH)
             val content = args?.get(MyArgs.CONTENT)
@@ -56,7 +56,7 @@ object FileOperations {
         }
 
         override val regex: Regex
-            get() = "$name$myPattern".toRegex(RegexOption.DOT_MATCHES_ALL)
+            get() = "$name$mPattern".toRegex(RegexOption.DOT_MATCHES_ALL)
         override val name: String
             get() = "write"
 

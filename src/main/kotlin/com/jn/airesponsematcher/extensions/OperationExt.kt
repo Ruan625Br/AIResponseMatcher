@@ -1,9 +1,14 @@
 package com.jn.airesponsematcher.extensions
 
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.jn.airesponsematcher.models.Arg
 import com.jn.airesponsematcher.operation.Operation
 import com.jn.airesponsematcher.operation.OperationBase
 import com.jn.airesponsematcher.utils.Patterns
+import com.jn.airesponsematcher.utils.buildClass
+import com.jn.airesponsematcher.utils.toRealPrimitiveType
+import java.io.StringReader
 
 /**
  * Replaces the occurrence of a specific operation in the string with a new value.
@@ -50,6 +55,14 @@ fun String.toMapFromKeyValuePairs(): Map<String, String> {
     return keyValuePairs.associate { pair ->
         val (key, value) = pair.split(":")
         key.trim().removeSurrounding("\"") to value.trim().removeSurrounding("\"")
+    }
+}
+
+internal fun String.convertJsonStringToMap(): Map<String, String> {
+    val json = "{${this}}"
+    val jsonObject = JsonParser.parseReader(StringReader(json)) as JsonObject
+    return jsonObject.entrySet().associate { entry ->
+        entry.key to entry.value.asString
     }
 }
 
@@ -104,9 +117,24 @@ fun Operation.process(matchedText: String): String {
 
     matches.forEach { matchResult ->
         val text = matchResult.value
-        val args = matchResult.groupValues[1].toMapFromKeyValuePairs()
+        val args = matchResult.groupValues[1].convertJsonStringToMap()
         result.add(resolve(text, args))
     }
 
     return result.joinToString("\n")
+}
+
+inline fun <reified T : Any> String.createInstanceFromArgs(): T {
+    val args = this.toMapFromKeyValuePairs().toRealPrimitiveType()
+    return buildClass<T>(
+        args
+    )
+}
+
+
+inline fun <reified T : Any> Map<String, String>.createInstanceFromArgs(): T {
+    val args = toRealPrimitiveType()
+    return buildClass<T>(
+        args
+    )
 }
